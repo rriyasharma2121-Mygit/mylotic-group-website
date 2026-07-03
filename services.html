@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Services | Mylotic Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#2563EB;
+  --secondary:#60A5FA;
+  --white:#FFFFFF;
+  --light-gray:#F8FAFC;
+  --soft-black:#111827;
+  --navy:#0F172A;
+  --glass: rgba(255,255,255,0.55);
+  --glass-border: rgba(255,255,255,0.6);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Manrope',sans-serif;
+  color:var(--soft-black);
+  background:var(--white);
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Sora',sans-serif;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+img{max-width:100%;display:block;}
+button{font-family:inherit;}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px;}
+.grad-text{
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.8s ease, transform 0.8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal.d1.visible{transition-delay:0.08s;}
+.reveal.d2.visible{transition-delay:0.16s;}
+.reveal.d3.visible{transition-delay:0.24s;}
+.reveal.d4.visible{transition-delay:0.32s;}
+.reveal.d5.visible{transition-delay:0.4s;}
+.reveal.d6.visible{transition-delay:0.48s;}
+
+body.loaded .page-enter{opacity:1;transform:translateY(0);}
+.page-enter{opacity:0;transform:translateY(18px);transition:opacity 0.9s ease, transform 0.9s ease;}
+
+/* ===== NAVBAR (same as home/about) ===== */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(14px);
+  box-shadow:0 6px 30px -10px rgba(37,99,235,0.18);
+  padding:14px 0;
+  transition:background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+}
+nav{
+  max-width:1240px;margin:0 auto;padding:0 32px;
+  display:grid;grid-template-columns:1fr auto 1fr;
+  align-items:center;gap:20px;
+}
+.logo-block{display:flex;align-items:center;gap:12px;}
+.logo-mg{
+  width:46px;height:46px;border-radius:12px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Sora',sans-serif;font-weight:800;color:#fff;font-size:1.05rem;
+  box-shadow:0 8px 20px -6px rgba(37,99,235,0.55);
+  flex-shrink:0;
+}
+.logo-text{font-family:'Sora',sans-serif;font-weight:800;font-size:1.05rem;color:var(--soft-black);white-space:nowrap;}
+.nav-links{display:flex;gap:38px;justify-content:center;font-weight:600;font-size:0.92rem;}
+.nav-links a{position:relative;color:var(--soft-black);padding:6px 0;transition:color 0.2s;}
+.nav-links a.active{color:var(--primary);}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:0;width:0;height:2px;
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  transition:width 0.3s ease;
+}
+.nav-links a.active::after{width:100%;}
+.nav-links a:hover{color:var(--primary);}
+.nav-links a:hover::after{width:100%;}
+.nav-right{display:flex;justify-content:flex-end;}
+.btn-contact{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#fff;font-weight:700;font-size:0.88rem;padding:12px 26px;border-radius:999px;
+  box-shadow:0 8px 22px -8px rgba(37,99,235,0.6);
+  transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  white-space:nowrap;
+}
+.btn-contact:hover{transform:scale(1.05) translateY(-1px);box-shadow:0 12px 28px -8px rgba(37,99,235,0.75);background:linear-gradient(135deg,#1d4ed8,var(--primary));}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;}
+.menu-btn span{display:block;width:24px;height:2px;background:var(--soft-black);margin:5px 0;transition:0.3s;}
+
+/* ===== BUTTONS (shared, with magnetic + ripple) ===== */
+.btn-primary, .btn-outline, .btn-text{
+  position:relative;overflow:hidden;display:inline-block;cursor:pointer;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#fff;font-weight:700;font-size:0.95rem;padding:16px 32px;border-radius:12px;
+  box-shadow:0 10px 26px -8px rgba(37,99,235,0.55);
+  transition:transform 0.25s, box-shadow 0.25s, background 0.25s;
+  border:none;
+}
+.btn-primary:hover{box-shadow:0 14px 32px -8px rgba(37,99,235,0.7);background:linear-gradient(135deg,#1d4ed8,var(--primary));}
+.btn-outline{
+  border:1.5px solid #CBD5E1;color:var(--soft-black);font-weight:700;font-size:0.95rem;
+  padding:16px 32px;border-radius:12px;background:rgba(255,255,255,0.6);
+  transition:border-color 0.25s, background 0.25s;
+}
+.btn-outline:hover{border-color:var(--primary);background:#fff;}
+.btn-outline.on-dark{color:#fff;border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.06);}
+.btn-outline.on-dark:hover{border-color:#fff;background:rgba(255,255,255,0.12);}
+.btn-text{
+  font-weight:700;font-size:0.9rem;color:var(--primary);padding:6px 0;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-text svg{transition:transform 0.25s ease;}
+.btn-text:hover svg{transform:translateX(5px);}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,0.55);transform:scale(0);animation:rippleAnim 0.6s ease-out;pointer-events:none;}
+@keyframes rippleAnim{to{transform:scale(3);opacity:0;}}
+
+section{padding:120px 0;position:relative;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:0.78rem;font-weight:700;letter-spacing:0.08em;color:var(--primary);
+  background:rgba(37,99,235,0.08);padding:8px 16px;border-radius:999px;margin-bottom:20px;
+}
+.eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--primary);}
+
+/* ===== Section divider ===== */
+.divider{
+  height:2px;width:100%;max-width:1240px;margin:0 auto;
+  background:linear-gradient(90deg, transparent, rgba(37,99,235,0.35), transparent);
+  background-size:200% 100%;
+  animation:dividerFlow 6s linear infinite;
+}
+@keyframes dividerFlow{0%{background-position:0% 0;}100%{background-position:-200% 0;}}
+
+.section-head{max-width:680px;margin:0 auto 50px;text-align:center;}
+.section-head h2{font-size:2.2rem;font-weight:800;}
+.section-head p{color:#64748B;margin-top:14px;font-size:1.02rem;line-height:1.7;}
+
+/* ===== SERVICES HERO ===== */
+.svc-hero{
+  padding:180px 0 120px;
+  background:linear-gradient(120deg,#ffffff 0%, #eef4ff 45%, #dbe9ff 100%);
+  background-size:200% 200%;
+  animation:gradientShift 16s ease infinite;
+  overflow:hidden;
+}
+@keyframes gradientShift{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+.svc-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;}
+.svc-hero h1{font-size:1rem;}
+.hero-title{font-size:3rem;line-height:1.12;font-weight:800;margin:18px 0 24px;color:var(--soft-black);}
+.svc-hero p.lede{font-size:1.05rem;line-height:1.75;color:#475569;max-width:520px;margin-bottom:32px;}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;}
+
+.orb-field{position:relative;height:480px;}
+.glass-layer{
+  position:absolute;border-radius:26px;
+  background:rgba(255,255,255,0.5);backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.7);
+  box-shadow:0 20px 50px -20px rgba(37,99,235,0.35);
+}
+.gl1{width:220px;height:160px;top:4%;left:6%;transform:rotate(-8deg);animation:floatSlow 8s ease-in-out infinite;}
+.gl2{width:190px;height:190px;top:32%;right:2%;transform:rotate(10deg);animation:floatSlow 10s ease-in-out infinite 0.5s;border-radius:50%;}
+.gl3{width:260px;height:120px;bottom:6%;left:16%;transform:rotate(5deg);animation:floatSlow 9s ease-in-out infinite 1s;}
+@keyframes floatSlow{0%,100%{transform:translateY(0) rotate(var(--r,0deg));}50%{transform:translateY(-20px) rotate(var(--r,0deg));}}
+.glow-blob{position:absolute;border-radius:50%;filter:blur(40px);opacity:0.55;}
+.gb1{width:220px;height:220px;background:radial-gradient(circle, var(--secondary), transparent 70%);top:8%;right:20%;}
+.gb2{width:180px;height:180px;background:radial-gradient(circle, var(--primary), transparent 70%);bottom:12%;left:4%;}
+.dot-particle{position:absolute;border-radius:50%;background:var(--primary);opacity:0.6;animation:particleFloat 6s ease-in-out infinite;}
+@keyframes particleFloat{0%,100%{transform:translateY(0);opacity:0.3;}50%{transform:translateY(-16px);opacity:0.9;}}
+.node-line{position:absolute;background:linear-gradient(90deg, rgba(37,99,235,0.5), rgba(96,165,250,0.1));height:2px;transform-origin:left center;opacity:0.6;}
+.node-dot{position:absolute;width:10px;height:10px;border-radius:50%;background:#fff;border:2.5px solid var(--primary);box-shadow:0 0 14px rgba(37,99,235,0.5);animation:dotPulse 2.6s ease-in-out infinite;}
+
+/* ===== EXPERTISE (centered statement) ===== */
+.expertise{background:var(--light-gray);text-align:center;overflow:hidden;}
+.expertise-inner{max-width:880px;margin:0 auto;}
+.expertise h2{font-size:2.6rem;font-weight:800;line-height:1.25;}
+.expertise p{color:#475569;font-size:1.08rem;line-height:1.85;margin-top:24px;}
+.expertise-bg-blob{position:absolute;width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(circle, rgba(96,165,250,0.18), transparent 70%);filter:blur(10px);
+  top:-160px;left:50%;transform:translateX(-50%);}
+
+/* ===== SERVICES LIST (alternating storytelling) ===== */
+.services-list{display:flex;flex-direction:column;gap:0;}
+.svc-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;
+  padding:90px 0;border-bottom:1px solid rgba(37,99,235,0.08);
+}
+.svc-row:last-child{border-bottom:none;}
+.svc-row.flip .svc-content{order:2;}
+.svc-row.flip .svc-visual{order:1;}
+.svc-num{
+  font-family:'Sora',sans-serif;font-weight:800;font-size:1.1rem;
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  letter-spacing:0.05em;margin-bottom:14px;display:block;
+}
+.svc-content h3{font-size:1.9rem;font-weight:800;margin-bottom:18px;line-height:1.25;}
+.svc-content p{color:#475569;font-size:1.02rem;line-height:1.8;margin-bottom:28px;max-width:480px;}
+.svc-visual{position:relative;height:340px;}
+.svc-glass{
+  position:absolute;border-radius:24px;
+  background:rgba(255,255,255,0.6);backdrop-filter:blur(16px);
+  border:1px solid rgba(37,99,235,0.18);
+  box-shadow:0 24px 56px -22px rgba(37,99,235,0.32);
+  transition:transform 0.4s ease, box-shadow 0.4s ease;
+}
+.svc-visual:hover .svc-glass{transform:translateY(-6px);box-shadow:0 30px 64px -18px rgba(37,99,235,0.42);}
+.svc-icon-big{
+  width:64px;height:64px;border-radius:16px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  display:flex;align-items:center;justify-content:center;color:#fff;
+  box-shadow:0 12px 28px -8px rgba(37,99,235,0.55);
+}
+.svc-ring{position:absolute;border-radius:50%;border:1.5px solid rgba(37,99,235,0.25);}
+.svc-row:nth-child(odd) .svc-visual::before{
+  content:'';position:absolute;inset:-30px;border-radius:50%;
+  background:radial-gradient(circle, rgba(96,165,250,0.18), transparent 70%);filter:blur(6px);z-index:-1;
+}
+.svc-row:nth-child(even) .svc-visual::before{
+  content:'';position:absolute;inset:-30px;border-radius:50%;
+  background:radial-gradient(circle, rgba(37,99,235,0.16), transparent 70%);filter:blur(6px);z-index:-1;
+}
+
+/* ===== APPROACH (process timeline) ===== */
+.approach{background:var(--light-gray);}
+.approach-path{position:relative;max-width:900px;margin:70px auto 0;}
+.approach-line{
+  position:absolute;left:0;right:0;top:34px;height:2px;
+  background:linear-gradient(90deg, var(--primary), var(--secondary));
+  transform-origin:left center;transform:scaleX(0);transition:transform 1.2s ease;
+}
+.approach-line.visible{transform:scaleX(1);}
+.approach-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;position:relative;z-index:2;}
+.astep{text-align:center;}
+.astep-node{
+  width:68px;height:68px;border-radius:50%;margin:0 auto 22px;
+  background:#fff;border:2.5px solid var(--primary);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Sora',sans-serif;font-weight:800;color:var(--primary);font-size:1.3rem;
+  box-shadow:0 0 0 6px rgba(37,99,235,0.1);
+  transition:transform 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
+}
+.astep:hover .astep-node{
+  transform:scale(1.12);background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;
+  box-shadow:0 0 0 10px rgba(37,99,235,0.18);
+}
+.astep h4{font-size:1.05rem;margin-bottom:10px;}
+.astep p{color:#64748B;font-size:0.86rem;line-height:1.6;}
+
+/* ===== INDUSTRIES TEASER (network viz) ===== */
+.ind-teaser{
+  background:linear-gradient(135deg, var(--navy) 0%, #16265c 60%, var(--primary) 140%);
+  color:#fff;overflow:hidden;position:relative;
+}
+.ind-teaser::before{
+  content:'';position:absolute;top:-160px;left:-100px;width:420px;height:420px;
+  background:radial-gradient(circle, rgba(96,165,250,0.35), transparent 70%);filter:blur(20px);
+}
+.ind-teaser::after{
+  content:'';position:absolute;bottom:-160px;right:-100px;width:420px;height:420px;
+  background:radial-gradient(circle, rgba(37,99,235,0.35), transparent 70%);filter:blur(20px);
+}
+.ind-head{max-width:740px;margin:0 auto 60px;text-align:center;position:relative;z-index:2;}
+.ind-head .eyebrow{background:rgba(255,255,255,0.1);color:#C7D2FE;justify-content:center;display:inline-flex;}
+.ind-head h2{font-size:2.3rem;font-weight:800;margin-top:6px;}
+.ind-head h3{font-size:1.1rem;font-weight:600;color:#C7D2FE;margin-top:14px;}
+.ind-head p{color:#94A3B8;font-size:0.98rem;line-height:1.8;margin-top:18px;}
+.network-zone{position:relative;height:340px;max-width:900px;margin:0 auto;z-index:2;}
+.net-node{
+  position:absolute;border-radius:18px;
+  background:rgba(255,255,255,0.08);backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.16);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:0.85rem;color:#fff;text-align:center;padding:10px;
+  transition:transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  cursor:default;
+}
+.net-node:hover{transform:translateY(-6px) scale(1.05);background:rgba(96,165,250,0.18);box-shadow:0 0 30px rgba(96,165,250,0.4);}
+.net-node[data-tip]{position:absolute;}
+.net-node .tip{
+  position:absolute;bottom:115%;left:50%;transform:translateX(-50%) translateY(6px);
+  background:#0F172A;color:#fff;font-size:0.74rem;font-weight:600;padding:8px 12px;border-radius:8px;
+  white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.25s ease, transform 0.25s ease;
+  box-shadow:0 10px 24px -8px rgba(0,0,0,0.5);
+}
+.net-node:hover .tip{opacity:1;transform:translateX(-50%) translateY(0);}
+.net-svg{position:absolute;inset:0;width:100%;height:100%;z-index:-1;}
+.net-svg line{stroke:rgba(96,165,250,0.35);stroke-width:1.4;}
+.net-particle{position:absolute;width:5px;height:5px;border-radius:50%;background:#60A5FA;opacity:0.7;animation:particleFloat 5s ease-in-out infinite;}
+.ind-cta{text-align:center;margin-top:54px;position:relative;z-index:2;}
+
+/* ===== WHY CHOOSE (accordion) ===== */
+.why-acc{max-width:880px;margin:60px auto 0;}
+.acc-item{
+  border-radius:18px;background:rgba(255,255,255,0.75);backdrop-filter:blur(14px);
+  border:1px solid rgba(37,99,235,0.14);margin-bottom:16px;overflow:hidden;
+  transition:border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.acc-item.active{border-color:var(--primary);box-shadow:0 20px 44px -22px rgba(37,99,235,0.35);}
+.acc-head{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:24px 30px;cursor:pointer;font-family:'Sora',sans-serif;font-weight:700;font-size:1.02rem;
+}
+.acc-num{color:rgba(37,99,235,0.35);font-weight:800;margin-right:14px;}
+.acc-arrow{flex-shrink:0;transition:transform 0.35s ease;color:var(--primary);}
+.acc-item.active .acc-arrow{transform:rotate(180deg);}
+.acc-body{max-height:0;overflow:hidden;transition:max-height 0.45s ease, opacity 0.4s ease, padding 0.4s ease;opacity:0;padding:0 30px;}
+.acc-item.active .acc-body{opacity:1;padding:0 30px 26px;}
+.acc-body p{color:#64748B;font-size:0.95rem;line-height:1.8;}
+
+/* ===== FINAL CTA ===== */
+.final-cta{
+  background:linear-gradient(135deg, var(--navy) 0%, #16265c 50%, var(--primary) 130%);
+  color:#fff;text-align:center;overflow:hidden;position:relative;padding:140px 0;
+}
+.final-cta::before{
+  content:'';position:absolute;top:-160px;left:-100px;width:420px;height:420px;
+  background:radial-gradient(circle, rgba(96,165,250,0.4), transparent 70%);filter:blur(20px);
+}
+.final-cta::after{
+  content:'';position:absolute;bottom:-160px;right:-100px;width:420px;height:420px;
+  background:radial-gradient(circle, rgba(37,99,235,0.4), transparent 70%);filter:blur(20px);
+}
+.final-cta h2{font-size:2.6rem;font-weight:800;line-height:1.18;max-width:780px;margin:0 auto 22px;position:relative;z-index:2;}
+.final-cta p{color:#C7D2FE;font-size:1.05rem;max-width:560px;margin:0 auto 38px;position:relative;z-index:2;}
+.final-cta .hero-ctas{justify-content:center;position:relative;z-index:2;}
+.wave-divider{position:absolute;bottom:0;left:0;right:0;opacity:0.5;z-index:1;}
+
+/* ===== FOOTER (same as home/about) ===== */
+footer{background:var(--navy);color:#CBD5E1;padding:70px 0 28px;position:relative;overflow:hidden;}
+footer::before{content:'';position:absolute;top:-120px;right:-80px;width:340px;height:340px;
+  background:radial-gradient(circle, rgba(37,99,235,0.35), transparent 70%);filter:blur(20px);}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1.2fr 1fr 1fr;gap:36px;
+  padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.1);position:relative;z-index:2;}
+.f-logo{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.f-logo-mg{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--secondary));
+  display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:800;color:#fff;font-size:0.92rem;}
+.f-logo-text{font-family:'Sora',sans-serif;font-weight:800;color:#fff;font-size:0.98rem;}
+footer .f-desc{font-size:0.88rem;color:#94A3B8;line-height:1.7;}
+footer h4{color:#fff;font-size:0.92rem;font-weight:700;margin-bottom:18px;letter-spacing:0.02em;}
+footer ul{display:flex;flex-direction:column;gap:11px;}
+footer ul a{font-size:0.87rem;color:#94A3B8;transition:color 0.2s, padding-left 0.2s;}
+footer ul a:hover{color:var(--secondary);padding-left:4px;}
+.f-contact-item{font-size:0.87rem;color:#94A3B8;margin-bottom:12px;display:flex;gap:8px;}
+.social-row{display:flex;gap:12px;margin-top:18px;}
+.social-icon{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:center;transition:box-shadow 0.25s, background 0.25s, transform 0.25s;}
+.social-icon:hover{background:rgba(37,99,235,0.25);box-shadow:0 0 18px rgba(96,165,250,0.6);transform:translateY(-3px);}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:24px;font-size:0.8rem;color:#64748B;position:relative;z-index:2;}
+.footer-bottom a{color:#94A3B8;}
+.footer-bottom a:hover{color:var(--secondary);}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1080px){
+  .footer-grid{grid-template-columns:1fr 1fr 1fr;}
+  .approach-steps{grid-template-columns:repeat(5,1fr);gap:10px;}
+  .astep p{display:none;}
+}
+@media (max-width:900px){
+  nav{grid-template-columns:auto auto;}
+  .nav-links{display:none;}
+  .menu-btn{display:block;}
+  .svc-hero-grid{grid-template-columns:1fr;}
+  .hero-title{font-size:2.2rem;}
+  .orb-field{height:320px;margin-top:20px;}
+  .svc-row{grid-template-columns:1fr;gap:36px;padding:60px 0;}
+  .svc-row.flip .svc-content{order:1;}
+  .svc-row.flip .svc-visual{order:2;}
+  .svc-visual{height:240px;}
+  .approach-steps{grid-template-columns:repeat(5,1fr);}
+  .astep h4{font-size:0.85rem;}
+  .network-zone{height:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;position:static;}
+  .net-node{position:static !important;width:auto !important;height:90px !important;}
+  .net-svg{display:none;}
+  .expertise h2{font-size:1.9rem;}
+}
+@media (max-width:600px){
+  .wrap{padding:0 20px;}
+  nav{padding:0 20px;}
+  section{padding:70px 0;}
+  .svc-hero{padding:140px 0 70px;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .final-cta h2{font-size:1.8rem;}
+  .approach-steps{grid-template-columns:1fr;gap:30px;}
+  .approach-line{display:none;}
+  .acc-head{font-size:0.92rem;padding:20px;}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001s !important; animation-iteration-count:1 !important; transition-duration:0.001s !important;}
+}
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav>
+    <div class="logo-block">
+      <div class="logo-mg">MG</div>
+      <div class="logo-text">MYLOTIC GROUP</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="about.html">ABOUT US</a></li>
+      <li><a href="#" class="active">SERVICES</a></li>
+      <li><a href="training.html">Training &amp; Development</a></li>
+      <li><a href="portfolio.html">PORTFOLIO</a></li>
+      <li><a href="industries.html">INDUSTRIES</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="contact.html" class="btn-contact">CONTACT US</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<!-- SECTION 1: HERO -->
+<section class="svc-hero" id="hero">
+  <div class="wrap svc-hero-grid">
+    <div class="page-enter">
+      <div class="eyebrow">OUR SERVICES</div>
+      <h1 class="hero-title">Transforming Ideas into Powerful Digital Solutions</h1>
+      <p class="lede">We deliver innovative and bespoke technology solutions that streamline operations, enhance customer experiences, and drive sustainable business growth. From strategy to execution, we help organizations thrive in a rapidly evolving digital world.</p>
+      <div class="hero-ctas">
+        <a href="#services" class="btn-primary">Explore Services</a>
+        <a href="#cta" class="btn-outline">Contact Us</a>
+      </div>
+    </div>
+
+    <div class="orb-field page-enter" id="parallaxZone">
+      <div class="glow-blob gb1 parallax-el" data-depth="0.02"></div>
+      <div class="glow-blob gb2 parallax-el" data-depth="0.03"></div>
+      <div class="glass-layer gl1 parallax-el" data-depth="0.05"></div>
+      <div class="glass-layer gl2 parallax-el" data-depth="0.08"></div>
+      <div class="glass-layer gl3 parallax-el" data-depth="0.04"></div>
+      <div class="node-dot parallax-el" data-depth="0.06" style="top:18%;left:40%;"></div>
+      <div class="node-dot parallax-el" data-depth="0.07" style="top:58%;left:62%;animation-delay:0.6s;"></div>
+      <div class="node-dot parallax-el" data-depth="0.05" style="top:42%;left:20%;animation-delay:1.2s;"></div>
+      <div class="dot-particle" style="width:8px;height:8px;top:24%;left:46%;animation-delay:0.2s;"></div>
+      <div class="dot-particle" style="width:5px;height:5px;top:64%;left:58%;animation-delay:1s;"></div>
+      <div class="dot-particle" style="width:6px;height:6px;top:48%;left:16%;animation-delay:1.6s;"></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION 2: OUR EXPERTISE -->
+<section class="expertise">
+  <div class="expertise-bg-blob"></div>
+  <div class="wrap expertise-inner reveal">
+    <div class="eyebrow" style="justify-content:center;display:inline-flex;">OUR EXPERTISE</div>
+    <h2>Solutions That Drive Growth, <span class="grad-text">Innovation</span> &amp; Business Success</h2>
+    <p>We deliver integrated business and technology solutions designed to help organizations grow, innovate, and scale with confidence. Every solution is tailored to solve real business challenges while preparing businesses for future opportunities.</p>
+  </div>
+</section>
+
+<!-- SECTION 3: OUR SERVICES (alternating storytelling) -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;display:inline-flex;">WHAT WE OFFER</div>
+      <h2>An Ecosystem of Talent &amp; Technology Services</h2>
+      <p>Ten integrated service lines, one accountable partner — built to take your business from strategy through to scaled execution.</p>
+    </div>
+
+    <div class="services-list">
+
+      <!-- 01 Recruitment & Staffing -->
+      <div class="svc-row reveal">
+        <div class="svc-content">
+          <span class="svc-num">01 / 10</span>
+          <h3>Recruitment &amp; Staffing</h3>
+          <p>We connect businesses with the right talent at the right time, combining deep market knowledge with a rigorous, people-first hiring process to build teams that perform from day one.</p>
+          <a href="#cta" class="btn-text">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="svc-visual">
+          <div class="svc-glass" style="width:70%;height:60%;top:8%;left:12%;display:flex;align-items:center;justify-content:center;">
+            <div class="svc-icon-big"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M17 20v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="7" r="3.5" stroke="#fff" stroke-width="2"/></svg></div>
+          </div>
+          <div class="svc-glass" style="width:40%;height:30%;bottom:6%;right:6%;"></div>
+          <div class="svc-ring" style="width:120px;height:120px;top:0;right:14%;"></div>
+        </div>
+      </div>
+
+      <!-- 02 GCC -->
+      <div class="svc-row flip reveal">
+        <div class="svc-content">
+          <span class="svc-num">02 / 10</span>
+          <h3>Global Capability Center (GCC) Enablement</h3>
+          <p>We help organizations design, set up, and scale Global Capability Centers — combining strategy, infrastructure, and talent to extend your operations confidently into new markets.</p>
+          <a href="#cta" class="btn-text">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="svc-visual">
+          <div class="svc-glass" style="width:62%;height:62%;top:6%;right:10%;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+            <div class="svc-icon-big"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="2"/><path d="M3 12h18M12 3c2.4 2.4 3.8 5.7 3.8 9s-1.4 6.6-3.8 9c-2.4-2.4-3.8-5.7-3.8-9S9.6 5.4 12 3Z" stroke="#fff" stroke-width="2"/></svg></div>
+          </div>
+          <div class="svc-glass" style="width:38%;height:24%;bottom:8%;left:8%;"></div>
+        </div>
+      </div>
+
+      <!-- 03 AI & Automation -->
+      <div class="svc-row reveal">
+        <div class="svc-content">
+          <span class="svc-num">03 / 10</span>
+          <h3>AI &amp; Automation Solutions</h3>
+          <p>From intelligent automation to applied machine learning, we design AI-driven systems that remove friction, surface insight, and free your teams to focus on higher-value work.</p>
+          <a href="#cta" class="btn-text">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="svc-visual">
+          <div class="svc-glass" style="width:64%;height:64%;top:4%;left:16%;display:flex;align-items:center;justify-content:center;">
+            <div class="svc-icon-big"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8Z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="node-dot" style="top:14%;right:14%;"></div>
+          <div class="node-dot" style="bottom:18%;right:24%;animation-delay:0.5s;"></div>
+        </div>
+      </div>
+
+      <!-- 04 Web & App Development -->
+      <div class="svc-row flip reveal">
+        <div class="svc-content">
+          <span class="svc-num">04 / 10</span>
+          <h3>Web &amp; App Development</h3>
+          <p>We design and build fast, scalable websites and applications with thoughtful UX at the core — engineered to grow alongside your business.</p>
+          <a href="#cta" class="btn-text">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="svc-visual">
+          <div class="svc-glass" style="width:68%;height:46%;top:14%;right:8%;display:flex;align-items:center;justify-content:center;">
+            <div class="svc-icon-big"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="2" stroke="#fff" stroke-width="2"/><path d="M8 21h8M12 17v4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+          </div>
+          <div class="svc-glass" style="width:34%;height:28%;bottom:6%;left:10%;"></div>
+        </div>
+      </div>
+
+      <!-- 05 EdTech & Corporate Training -->
+      <div class="svc-row reveal">
+        <div class="svc-content">
+          <span class="svc-num">05 / 10</span>
+          <h3>EdTech &amp; Corporate Training</h3>
+          <p>We build learning programs and platforms that upskill teams and learners alike, blending instructional design with technology to make training measurable and effective.</p>
+          <a href="#cta" class="btn-text">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="svc-visual">
+          <div class="svc-glass" style="width:60%;height:60%;top:8%;left:18%;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+            <div class="svc-icon-big"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-5 9 5-9 5-9-5Z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M7 11.5V16c0 1.5 2.5 3 5 3s5-1.5 5-3v-4.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 Digital Transformation & IT Consulting -->
+      <div class="svc-row flip reveal">
+        <div class="svc-content">
+          <span class="svc-num">06 / 10</span>
+          <h3>Digital Transformation &amp; IT Consulting</h3>
+          <p>We help organizations modernize systems, processes, and ways of working — pairing strategic consulting with hands-on execution to make transformation stick.</p>
+          <a href="#cta" class="btn-text">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="svc-visual">
+          <div class="svc-glass" style="width:66%;height:50%;top:12%;right:10%;display:flex;align-items:center;justify-content:center;">
+            <div class="svc-icon-big"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+          </div>
+          <div class="svc-glass" style="width:30%;height:30%;bottom:8%;left:12%;border-radius:50%;"></div>
+        </div>
+      </div>
+
+      <!-- 07 Managed Services & Dedicated Teams -->
+      <div class="svc-row reveal">
+        <div class="svc-content">
+          <span class="svc-num">07 / 10</span>
+          <h3>Managed Services &amp; Dedicated Teams</h3>
+          <p>We provide dedicated, accountable teams who operate as an extension of your business — handling delivery so your internal teams can focus on strategy.</p>
+          <a href="#cta" class="btn-text">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="svc-visual">
+          <div class="svc-glass" style="width:64%;height:58%;top:6%;left:14%;display:flex;align-items:center;justify-content:center;">
+            <div class="svc-icon-big"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="#fff" stroke-width="2"/><circle cx="17" cy="9" r="2.4" stroke="#fff" stroke-width="2"/><path d="M3.5 19c0-3 2.5-5.2 5.5-5.2s5.5 2.2 5.5 5.2M15 19c0-2.2 1.7-4 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 08 Project-Based Hiring & RPO -->
+      <div class="svc-row flip reveal">
+        <div class="svc-content">
+          <span class="svc-num">08 / 10</span>
+          <h3>Project-Based Hiring &amp; RPO Services</h3>
+          <p>Whether you need talent for a single initiative or a fully managed recruitment process, we flex our model to match the pace and scale of your business.</p>
+          <a href="#cta" class="btn-text">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="svc-visual">
+          <div class="svc-glass" style="width:60%;height:60%;top:8%;right:14%;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+            <div class="svc-icon-big"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="2"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 09 Design & Creative Services -->
+      <div class="svc-row reveal">
+        <div class="svc-content">
+          <span class="svc-num">09 / 10</span>
+          <h3>Design &amp; Creative Services</h3>
+          <p>From brand identity to product UI, our design team crafts visual experiences that are distinctive, intentional, and built to convert.</p>
+          <a href="#cta" class="btn-text">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="svc-visual">
+          <div class="svc-glass" style="width:62%;height:50%;top:10%;left:16%;display:flex;align-items:center;justify-content:center;">
+            <div class="svc-icon-big"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 19l7-7 3 3-7 7-3-3Z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="svc-glass" style="width:30%;height:24%;bottom:10%;right:10%;"></div>
+        </div>
+      </div>
+
+      <!-- 10 HR Solutions -->
+      <div class="svc-row flip reveal">
+        <div class="svc-content">
+          <span class="svc-num">10 / 10</span>
+          <h3>HR Solutions &amp; Workforce Advisory</h3>
+          <p>We support the full employee lifecycle — policy, payroll, compliance, and engagement — so your people function is as strong as the people themselves.</p>
+          <a href="#cta" class="btn-text">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="svc-visual">
+          <div class="svc-glass" style="width:66%;height:54%;top:10%;right:10%;display:flex;align-items:center;justify-content:center;">
+            <div class="svc-icon-big"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="3.5" stroke="#fff" stroke-width="2"/><path d="M21.5 21v-2a4 4 0 00-3-3.87M15.5 3.6a3.5 3.5 0 010 6.8" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION 4: OUR APPROACH -->
+<section class="approach">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;display:inline-flex;">OUR APPROACH</div>
+      <h2>A Clear Path From Idea to Impact</h2>
+      <p>A structured, repeatable process that keeps every engagement focused, transparent, and built for long-term results.</p>
+    </div>
+    <div class="approach-path">
+      <div class="approach-line" id="approachLine"></div>
+      <div class="approach-steps">
+        <div class="astep reveal">
+          <div class="astep-node">U</div>
+          <h4>Understand</h4>
+          <p>We listen first — mapping your goals, constraints, and the real problem worth solving.</p>
+        </div>
+        <div class="astep reveal d1">
+          <div class="astep-node">P</div>
+          <h4>Plan</h4>
+          <p>We translate insight into a clear, prioritized roadmap aligned to business outcomes.</p>
+        </div>
+        <div class="astep reveal d2">
+          <div class="astep-node">B</div>
+          <h4>Build</h4>
+          <p>Our teams execute with precision, keeping you informed at every milestone.</p>
+        </div>
+        <div class="astep reveal d3">
+          <div class="astep-node">O</div>
+          <h4>Optimize</h4>
+          <p>We refine continuously, using real data to improve performance after launch.</p>
+        </div>
+        <div class="astep reveal d4">
+          <div class="astep-node">G</div>
+          <h4>Grow</h4>
+          <p>We scale what works, becoming a long-term partner in your next stage of growth.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: INDUSTRIES WE EMPOWER -->
+<section class="ind-teaser" id="industries">
+  <div class="wrap">
+    <div class="ind-head reveal">
+      <div class="eyebrow">INDUSTRIES WE EMPOWER</div>
+      <h2>Serving Every Industry. Creating Impact Everywhere.</h2>
+      <h3>No matter the industry, every business deserves the right technology, talent, and strategy to grow.</h3>
+      <p>At MYLOTIC GROUP, we believe innovation has no boundaries. Every industry faces unique challenges, and we are committed to delivering intelligent, scalable, and future-ready solutions that help organizations overcome complexity, embrace transformation, and unlock new opportunities. From rapidly evolving digital businesses to established enterprises, we partner with organizations across diverse sectors — leveraging modern technologies, AI-driven innovation, and strategic expertise to accelerate growth, improve efficiency, and drive long-term success.</p>
+    </div>
+
+    <div class="network-zone reveal d2" id="networkZone">
+      <svg class="net-svg" id="netSvg"></svg>
+      <div class="net-node" data-tip="Software, SaaS &amp; Digital Platforms" style="width:140px;height:90px;top:2%;left:6%;">IT</div>
+      <div class="net-node" data-tip="Operations, manufacturing &amp; services" style="width:140px;height:90px;top:6%;right:8%;">Non-IT</div>
+      <div class="net-node" data-tip="Learning platforms &amp; institutions" style="width:140px;height:90px;top:38%;left:34%;">EdTech</div>
+      <div class="net-node" data-tip="Hospitals, providers &amp; health-tech" style="width:140px;height:90px;bottom:30%;left:2%;">Healthcare</div>
+      <div class="net-node" data-tip="Streaming, broadcast &amp; entertainment" style="width:140px;height:90px;bottom:32%;right:4%;">OTT / Media</div>
+      <div class="net-node" data-tip="Banking, financial services &amp; fintech" style="width:160px;height:90px;bottom:2%;left:26%;">BFSI &amp; Fintech</div>
+      <div class="net-node" data-tip="Automation &amp; applied AI businesses" style="width:160px;height:90px;bottom:4%;right:22%;">AI &amp; Automation</div>
+      <div class="net-particle" style="top:20%;left:48%;"></div>
+      <div class="net-particle" style="top:60%;left:60%;animation-delay:1s;"></div>
+      <div class="net-particle" style="top:45%;left:18%;animation-delay:2s;"></div>
+    </div>
+
+    <div class="ind-cta reveal d3">
+      <a href="#" class="btn-outline on-dark">Explore Industries</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: WHY CHOOSE MYLOTIC GROUP (accordion) -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;display:inline-flex;">WHY MYLOTIC GROUP</div>
+      <h2>Why Choose Mylotic Group</h2>
+      <p>What makes us a different kind of partner — explore each principle below.</p>
+    </div>
+
+    <div class="why-acc reveal d1" id="accGroup">
+      <div class="acc-item active">
+        <div class="acc-head"><span><span class="acc-num">01</span>Strategic Business Partner</span><svg class="acc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="acc-body"><p>We work closely with our clients to understand their goals, challenges, and vision, delivering tailored solutions that create measurable business impact and long-term value.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head"><span><span class="acc-num">02</span>Comprehensive Talent &amp; Technology Ecosystem</span><svg class="acc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="acc-body"><p>From workforce solutions and recruitment to AI, software development, GCC enablement, digital transformation, corporate training, managed services, and creative solutions, we provide an integrated ecosystem that supports business growth.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head"><span><span class="acc-num">03</span>Innovation-Driven Approach</span><svg class="acc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="acc-body"><p>We leverage emerging technologies, modern frameworks, and industry best practices to deliver future-ready solutions that improve efficiency and create competitive advantage.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head"><span><span class="acc-num">04</span>Global Delivery with Local Expertise</span><svg class="acc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="acc-body"><p>Our scalable delivery model combines global capabilities with local market understanding, ensuring seamless collaboration and consistent results.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head"><span><span class="acc-num">05</span>Speed, Agility &amp; Scalability</span><svg class="acc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="acc-body"><p>We adapt quickly to changing business needs, enabling faster execution, flexible engagement models, and scalable teams.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head"><span><span class="acc-num">06</span>Quality, Transparency &amp; Reliability</span><svg class="acc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="acc-body"><p>Every engagement is built on accountability, transparency, and a commitment to delivering exceptional quality.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head"><span><span class="acc-num">07</span>Client Success is Our Priority</span><svg class="acc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="acc-body"><p>We measure success through the long-term value we create, building trusted relationships that extend beyond project delivery.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head"><span><span class="acc-num">08</span>A Future-Ready Growth Partner</span><svg class="acc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="acc-body"><p>Whether you're scaling a startup or transforming an enterprise, MYLOTIC GROUP provides the expertise, technology, and talent to help you succeed.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: FINAL CTA -->
+<section class="final-cta" id="cta">
+  <div class="wrap">
+    <div class="eyebrow" style="background:rgba(255,255,255,0.1);color:#C7D2FE;justify-content:center;display:inline-flex;">LET'S TALK</div>
+    <h2 class="reveal">Ready to Transform Your Business?</h2>
+    <p class="reveal d1">Let's build innovative, scalable, and future-ready solutions together.</p>
+    <div class="hero-ctas reveal d2" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+      <a href="contact.html" class="btn-primary">Contact Us</a>
+      <a href="contact.html" class="btn-outline on-dark">Schedule a Consultation</a>
+    </div>
+  </div>
+  <svg class="wave-divider" viewBox="0 0 1440 80" preserveAspectRatio="none" height="80"><path fill="rgba(255,255,255,0.05)" d="M0,40 C360,90 1080,0 1440,40 L1440,80 L0,80 Z"></path></svg>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="f-logo">
+          <div class="f-logo-mg">MG</div>
+          <div class="f-logo-text">MYLOTIC GROUP</div>
+        </div>
+        <p class="f-desc">Empowering Businesses with Talent, Technology &amp; Global Capabilities.</p>
+        <div class="social-row">
+          <a class="social-icon" href="#" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="3" stroke="#CBD5E1" stroke-width="1.6"/><path d="M7 10v7M7 7.2v.01M11 17v-4.5c0-1.4 1-2.5 2.4-2.5S16 11 16 12.7V17M11 10v7" stroke="#CBD5E1" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+          <a class="social-icon" href="#" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="#CBD5E1" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" stroke="#CBD5E1" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1.1" fill="#CBD5E1"/></svg></a>
+          <a class="social-icon" href="#" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M14 21v-7h2.5l.5-3H14V9c0-.9.3-1.5 1.7-1.5H17V4.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1V11H8v3h2.6v7H14Z" stroke="#CBD5E1" stroke-width="1.4" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="training.html">Training &amp; Development</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="industries.html">Industries</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Recruitment &amp; Staffing</a></li>
+          <li><a href="#services">AI Solutions</a></li>
+          <li><a href="#services">GCC Enablement</a></li>
+          <li><a href="#services">Web &amp; App Development</a></li>
+          <li><a href="#services">EdTech Training</a></li>
+          <li><a href="#services">Managed Services</a></li>
+          <li><a href="#services">Digital Transformation</a></li>
+          <li><a href="#services">HR Solutions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="industries.html#industries">IT</a></li>
+          <li><a href="industries.html#industries">Non-IT</a></li>
+          <li><a href="industries.html#industries">EdTech</a></li>
+          <li><a href="industries.html#industries">Healthcare</a></li>
+          <li><a href="industries.html#industries">OTT / Media</a></li>
+          <li><a href="industries.html#industries">BFSI &amp; Fintech</a></li>
+          <li><a href="industries.html#industries">AI &amp; Automation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div class="f-contact-item">📧 info@myloticgroup.com</div>
+        <div class="f-contact-item">📞 +91 9717101758</div>
+        <div class="f-contact-item">📍 India</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MYLOTIC GROUP. All Rights Reserved.</span>
+      <span><a href="#">Privacy Policy</a> • <a href="#">Terms &amp; Conditions</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('load', () => document.body.classList.add('loaded'));
+
+// Mobile menu
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.querySelector('.nav-links');
+menuBtn.addEventListener('click', () => {
+  const open = navLinks.style.display === 'flex';
+  navLinks.style.display = open ? 'none' : 'flex';
+  navLinks.style.cssText += open ? '' : 'position:fixed;top:74px;left:20px;right:20px;background:#fff;flex-direction:column;padding:24px;border-radius:16px;box-shadow:0 20px 40px -10px rgba(37,99,235,0.25);gap:18px;z-index:999;';
+});
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => revealObserver.observe(el));
+
+// Approach line scroll animation
+const approachLine = document.getElementById('approachLine');
+if (approachLine) {
+  const lineObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        approachLine.classList.add('visible');
+        lineObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  lineObserver.observe(approachLine);
+}
+
+// Mouse parallax in hero
+const parallaxZone = document.getElementById('parallaxZone');
+if (parallaxZone) {
+  parallaxZone.addEventListener('mousemove', (e) => {
+    const rect = parallaxZone.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+    parallaxZone.querySelectorAll('.parallax-el').forEach(el => {
+      const depth = parseFloat(el.getAttribute('data-depth')) || 0.03;
+      el.style.transform = `translate(${dx * depth}px, ${dy * depth}px)`;
+    });
+  });
+  parallaxZone.addEventListener('mouseleave', () => {
+    parallaxZone.querySelectorAll('.parallax-el').forEach(el => el.style.transform = 'translate(0,0)');
+  });
+}
+
+// Mouse parallax in industries network
+const networkZone = document.getElementById('networkZone');
+if (networkZone) {
+  networkZone.addEventListener('mousemove', (e) => {
+    const rect = networkZone.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = (e.clientX - cx) * 0.02;
+    const dy = (e.clientY - cy) * 0.02;
+    networkZone.querySelectorAll('.net-node').forEach(el => {
+      el.style.transform = `translate(${dx}px, ${dy}px)`;
+    });
+  });
+  networkZone.addEventListener('mouseleave', () => {
+    networkZone.querySelectorAll('.net-node').forEach(el => el.style.transform = 'translate(0,0)');
+  });
+
+  // Draw connecting lines between nodes
+  function drawNetLines() {
+    const svg = document.getElementById('netSvg');
+    if (!svg) return;
+    svg.innerHTML = '';
+    const nodes = Array.from(networkZone.querySelectorAll('.net-node'));
+    if (window.innerWidth <= 900) return;
+    const zoneRect = networkZone.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${zoneRect.width} ${zoneRect.height}`);
+    const centers = nodes.map(n => {
+      const r = n.getBoundingClientRect();
+      return { x: r.left - zoneRect.left + r.width/2, y: r.top - zoneRect.top + r.height/2 };
+    });
+    centers.forEach((c, i) => {
+      const next = centers[(i+1) % centers.length];
+      const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+      line.setAttribute('x1', c.x); line.setAttribute('y1', c.y);
+      line.setAttribute('x2', next.x); line.setAttribute('y2', next.y);
+      svg.appendChild(line);
+    });
+  }
+  window.addEventListener('load', drawNetLines);
+  window.addEventListener('resize', drawNetLines);
+}
+
+// Accordion (only one open at a time)
+const accItems = document.querySelectorAll('#accGroup .acc-item');
+accItems.forEach(item => {
+  item.querySelector('.acc-head').addEventListener('click', () => {
+    const isActive = item.classList.contains('active');
+    accItems.forEach(i => i.classList.remove('active'));
+    if (!isActive) item.classList.add('active');
+  });
+});
+
+// Magnetic buttons
+document.querySelectorAll('.btn-primary, .btn-outline').forEach(btn => {
+  btn.addEventListener('mousemove', (e) => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transform = `translate(${x * 0.18}px, ${y * 0.3}px)`;
+  });
+  btn.addEventListener('mouseleave', () => btn.style.transform = 'translate(0,0)');
+
+  // Ripple
+  btn.addEventListener('click', function(e){
+    const rect = this.getBoundingClientRect();
+    const ripple = document.createElement('span');
+    const size = Math.max(rect.width, rect.height);
+    ripple.className = 'ripple';
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+    ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+    this.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
+  });
+});
+</script>
+</body>
+</html>

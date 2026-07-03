@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio | Mylotic Group - Talent, Technology & Transformation</title>
+<meta name="description" content="Mylotic Group: ISO certified IT recruitment services, GCC setup services, AI development company, corporate training provider, EdTech training institute, and staffing solutions provider.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#2563EB;--secondary:#60A5FA;--white:#FFFFFF;--light-gray:#F8FAFC;
+  --soft-black:#111827;--navy:#0F172A;--glass: rgba(255,255,255,0.55);--glass-border: rgba(255,255,255,0.6);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Manrope',sans-serif;color:var(--soft-black);background:var(--white);overflow-x:hidden;}
+h1,h2,h3,h4{font-family:'Sora',sans-serif;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+img{max-width:100%;display:block;}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px;}
+.grad-text{background:linear-gradient(90deg,var(--primary),var(--secondary));-webkit-background-clip:text;background-clip:text;color:transparent;}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.8s ease, transform 0.8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal.d1.visible{transition-delay:0.08s;}
+.reveal.d2.visible{transition-delay:0.16s;}
+.reveal.d3.visible{transition-delay:0.24s;}
+.reveal.d4.visible{transition-delay:0.32s;}
+.reveal.d5.visible{transition-delay:0.4s;}
+.reveal.d6.visible{transition-delay:0.48s;}
+.page-enter{opacity:0;transform:translateY(18px);transition:opacity 0.9s ease, transform 0.9s ease;}
+body.loaded .page-enter{opacity:1;transform:translateY(0);}
+
+/* NAVBAR */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;background:transparent;
+  transition:background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;padding:22px 0;}
+header.scrolled{background:rgba(255,255,255,0.92);backdrop-filter:blur(14px);box-shadow:0 6px 30px -10px rgba(37,99,235,0.18);padding:14px 0;}
+nav{max-width:1240px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;}
+.logo-block{display:flex;align-items:center;gap:12px;}
+.logo-mg{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--secondary));
+  display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:800;color:#fff;font-size:1.05rem;
+  box-shadow:0 8px 20px -6px rgba(37,99,235,0.55);flex-shrink:0;}
+.logo-text{font-family:'Sora',sans-serif;font-weight:800;font-size:1.05rem;color:var(--soft-black);white-space:nowrap;}
+.nav-links{display:flex;gap:38px;justify-content:center;font-weight:600;font-size:0.92rem;}
+.nav-links a{position:relative;color:var(--soft-black);padding:6px 0;transition:color 0.2s;}
+.nav-links a.active{color:var(--primary);}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;
+  background:linear-gradient(90deg,var(--primary),var(--secondary));transition:width 0.3s ease;}
+.nav-links a.active::after{width:100%;}
+.nav-links a:hover{color:var(--primary);}
+.nav-links a:hover::after{width:100%;}
+.nav-right{display:flex;justify-content:flex-end;}
+.btn-contact{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-weight:700;font-size:0.88rem;
+  padding:12px 26px;border-radius:999px;box-shadow:0 8px 22px -8px rgba(37,99,235,0.6);
+  transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;white-space:nowrap;}
+.btn-contact:hover{transform:scale(1.05) translateY(-1px);box-shadow:0 12px 28px -8px rgba(37,99,235,0.75);background:linear-gradient(135deg,#1d4ed8,var(--primary));}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;}
+.menu-btn span{display:block;width:24px;height:2px;background:var(--soft-black);margin:5px 0;transition:0.3s;}
+
+/* BUTTONS */
+.btn-primary, .btn-outline{position:relative;overflow:hidden;display:inline-block;cursor:pointer;}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-weight:700;font-size:0.92rem;
+  padding:15px 28px;border-radius:12px;box-shadow:0 10px 26px -8px rgba(37,99,235,0.55);
+  transition:transform 0.25s, box-shadow 0.25s, background 0.25s;border:none;}
+.btn-primary:hover{box-shadow:0 14px 32px -8px rgba(37,99,235,0.7);background:linear-gradient(135deg,#1d4ed8,var(--primary));}
+.btn-outline{border:1.5px solid #CBD5E1;color:var(--soft-black);font-weight:700;font-size:0.92rem;
+  padding:15px 28px;border-radius:12px;background:rgba(255,255,255,0.6);transition:border-color 0.25s, background 0.25s;}
+.btn-outline:hover{border-color:var(--primary);background:#fff;}
+.btn-outline.on-dark{color:#fff;border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.06);}
+.btn-outline.on-dark:hover{border-color:#fff;background:rgba(255,255,255,0.12);}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,0.55);transform:scale(0);animation:rippleAnim 0.6s ease-out;pointer-events:none;}
+@keyframes rippleAnim{to{transform:scale(3);opacity:0;}}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+
+section{padding:110px 0;position:relative;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;color:var(--primary);
+  background:rgba(37,99,235,0.08);padding:8px 16px;border-radius:999px;margin-bottom:20px;}
+.eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--primary);}
+.eyebrow.on-dark{background:rgba(255,255,255,0.1);color:#C7D2FE;}
+.eyebrow.on-dark::before{background:#60A5FA;}
+.divider{height:2px;width:100%;max-width:1240px;margin:0 auto;background:linear-gradient(90deg, transparent, rgba(37,99,235,0.35), transparent);
+  background-size:200% 100%;animation:dividerFlow 6s linear infinite;}
+@keyframes dividerFlow{0%{background-position:0% 0;}100%{background-position:-200% 0;}}
+.section-head{max-width:720px;margin:0 auto 50px;text-align:center;}
+.section-head h2{font-size:2.2rem;font-weight:800;letter-spacing:0.01em;}
+.section-head p{color:#64748B;margin-top:14px;font-size:1.02rem;line-height:1.7;}
+
+/* HERO */
+.hero{position:relative;padding:170px 0 110px;background:linear-gradient(120deg,#ffffff 0%, #eef4ff 45%, #dbe9ff 100%);
+  background-size:200% 200%;animation:gradientShift 14s ease infinite;overflow:hidden;}
+@keyframes gradientShift{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+.floating-shape{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(96,165,250,0.45), rgba(37,99,235,0.05));
+  filter:blur(2px);animation:floatY 9s ease-in-out infinite;}
+@keyframes floatY{0%,100%{transform:translateY(0) translateX(0);}50%{transform:translateY(-26px) translateX(14px);}}
+.shape1{width:160px;height:160px;top:8%;left:4%;animation-duration:11s;}
+.shape2{width:90px;height:90px;top:62%;left:10%;animation-duration:8s;animation-delay:1s;}
+.shape3{width:60px;height:60px;top:20%;left:46%;animation-duration:7s;animation-delay:2s;opacity:0.6;}
+.hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:50px;align-items:center;position:relative;z-index:2;}
+.positioning-line{font-family:'Sora',sans-serif;font-weight:700;font-size:1rem;color:var(--primary);margin-bottom:14px;}
+.hero h1{font-size:2.5rem;line-height:1.18;font-weight:800;letter-spacing:-0.01em;margin-bottom:20px;color:var(--soft-black);}
+.hero p.subhead{font-size:1.04rem;font-weight:600;color:#334155;margin-bottom:14px;}
+.hero p.lede{font-size:0.98rem;line-height:1.75;color:#475569;max-width:560px;margin-bottom:30px;}
+
+.hero-visual{position:relative;height:480px;display:flex;align-items:center;justify-content:center;}
+.glow-ring{position:absolute;border-radius:50%;border:1px solid rgba(37,99,235,0.25);}
+.glow-ring.r1{width:360px;height:360px;animation:spinSlow 30s linear infinite;}
+.glow-ring.r2{width:280px;height:280px;border-style:dashed;animation:spinSlow 40s linear infinite reverse;}
+@keyframes spinSlow{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.hub-core{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));
+  display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Sora',sans-serif;font-weight:800;font-size:0.8rem;
+  text-align:center;box-shadow:0 0 50px rgba(37,99,235,0.5);z-index:3;position:relative;}
+.particle{position:absolute;border-radius:50%;background:var(--secondary);opacity:0.7;animation:particleFloat 6s ease-in-out infinite;}
+@keyframes particleFloat{0%,100%{transform:translateY(0);opacity:0.3;}50%{transform:translateY(-18px);opacity:0.9;}}
+.float-card{position:absolute;background:var(--glass);backdrop-filter:blur(12px);border:1px solid var(--glass-border);border-radius:16px;
+  padding:10px 16px;font-size:0.8rem;font-weight:700;color:var(--soft-black);box-shadow:0 12px 30px -12px rgba(37,99,235,0.35);
+  display:flex;align-items:center;gap:8px;animation:cardFloat 5s ease-in-out infinite;z-index:4;}
+@keyframes cardFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.fc1{top:0%;left:2%;animation-delay:0s;}
+.fc2{top:10%;right:0%;animation-delay:0.6s;}
+.fc3{top:46%;left:-8%;animation-delay:1.2s;}
+.fc4{top:48%;right:-10%;animation-delay:1.8s;}
+.fc5{bottom:10%;left:0%;animation-delay:2.4s;}
+.fc6{bottom:6%;right:2%;animation-delay:3s;}
+
+/* STATS / IMPACT */
+.impact{background:linear-gradient(180deg,var(--light-gray) 0%, #ffffff 100%);position:relative;overflow:hidden;}
+.impact::before{content:'';position:absolute;top:-120px;left:-80px;width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle, rgba(96,165,250,0.18), transparent 70%);filter:blur(10px);
+  animation:floatY 12s ease-in-out infinite;pointer-events:none;}
+.impact::after{content:'';position:absolute;bottom:-140px;right:-100px;width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle, rgba(37,99,235,0.14), transparent 70%);filter:blur(10px);
+  animation:floatY 14s ease-in-out infinite reverse;pointer-events:none;}
+.impact-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;}
+.stat-card{background:rgba(255,255,255,0.7);backdrop-filter:blur(16px);border:1px solid rgba(37,99,235,0.12);border-radius:20px;
+  padding:30px 20px;text-align:center;box-shadow:0 16px 40px -22px rgba(37,99,235,0.25);
+  transition:transform 0.3s, box-shadow 0.3s, border-color 0.3s;}
+.stat-card:hover{transform:translateY(-8px);box-shadow:0 24px 50px -18px rgba(37,99,235,0.4);border-color:rgba(37,99,235,0.4);}
+.stat-num{font-family:'Sora',sans-serif;font-size:2.1rem;font-weight:800;background:linear-gradient(90deg,var(--primary),var(--secondary));
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.stat-title{font-weight:700;margin-top:6px;font-size:0.88rem;color:#475569;}
+
+/* TRUST */
+.industry-pills{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:36px;}
+.pill{background:rgba(255,255,255,0.75);backdrop-filter:blur(10px);border:1px solid rgba(37,99,235,0.16);
+  border-radius:999px;padding:10px 22px;font-size:0.85rem;font-weight:600;color:#334155;
+  transition:transform 0.25s, box-shadow 0.25s, border-color 0.25s;}
+.pill:hover{transform:translateY(-3px);box-shadow:0 10px 24px -10px rgba(37,99,235,0.4);border-color:var(--primary);color:var(--primary);}
+.logo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:44px;}
+.logo-box{height:64px;border-radius:14px;background:rgba(255,255,255,0.6);backdrop-filter:blur(10px);
+  border:1px solid rgba(37,99,235,0.12);display:flex;align-items:center;justify-content:center;
+  font-family:'Sora',sans-serif;font-weight:700;font-size:0.75rem;color:#94A3B8;letter-spacing:0.04em;
+  transition:transform 0.25s, border-color 0.25s, color 0.25s;}
+.logo-box:hover{transform:translateY(-4px);border-color:var(--primary);color:var(--primary);}
+.trust-line{text-align:center;margin-top:30px;font-weight:700;color:var(--primary);font-size:0.95rem;}
+
+/* CORE SERVICE SECTION */
+.core-section{}
+.core-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+.core-grid h2{font-size:2rem;font-weight:800;margin-bottom:16px;}
+.core-grid p.impact-line{font-style:italic;color:var(--primary);font-weight:600;margin-top:20px;font-size:0.96rem;}
+.service-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+.service-pill{background:rgba(37,99,235,0.06);border:1px solid rgba(37,99,235,0.18);color:#1e3a8a;
+  font-size:0.85rem;font-weight:600;padding:9px 18px;border-radius:999px;transition:transform 0.25s, background 0.25s;}
+.service-pill:hover{transform:translateY(-3px);background:rgba(37,99,235,0.12);}
+
+/* NETWORK VISUAL for core sections */
+.network-visual{position:relative;height:340px;background:rgba(255,255,255,0.5);backdrop-filter:blur(14px);
+  border:1px solid rgba(37,99,235,0.14);border-radius:22px;box-shadow:0 20px 50px -26px rgba(37,99,235,0.3);overflow:hidden;}
+.network-visual .nv-node{position:absolute;background:rgba(255,255,255,0.85);border:1px solid rgba(37,99,235,0.25);
+  border-radius:12px;padding:8px 14px;font-size:0.78rem;font-weight:700;color:var(--soft-black);
+  box-shadow:0 10px 24px -12px rgba(37,99,235,0.35);animation:cardFloat 5s ease-in-out infinite;}
+.network-visual .nv-glow{position:absolute;border-radius:50%;filter:blur(30px);opacity:0.5;}
+
+/* PIPELINE VISUAL (recruitment) */
+.pipeline-card{position:relative;height:360px;background:rgba(255,255,255,0.55);backdrop-filter:blur(14px);
+  border:1px solid rgba(37,99,235,0.14);border-radius:22px;box-shadow:0 20px 50px -26px rgba(37,99,235,0.3);overflow:hidden;}
+.pipeline-svg{position:absolute;inset:0;width:100%;height:100%;}
+.pipeline-path{opacity:0.35;}
+.pipeline-path-glow{opacity:0;stroke-dasharray:6 360;stroke-dashoffset:360;animation:pathDraw 3.2s ease-in-out infinite;filter:drop-shadow(0 0 6px rgba(37,99,235,0.6));}
+@keyframes pathDraw{0%{opacity:0.9;stroke-dashoffset:360;}80%{opacity:0.9;stroke-dashoffset:0;}100%{opacity:0;stroke-dashoffset:0;}}
+.pl-node{position:absolute;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.9);
+  border:1px solid rgba(37,99,235,0.2);border-radius:999px;padding:9px 16px 9px 9px;
+  box-shadow:0 12px 26px -12px rgba(37,99,235,0.4);font-size:0.84rem;font-weight:700;color:var(--soft-black);
+  animation:cardFloat 5s ease-in-out infinite;transition:transform 0.3s, box-shadow 0.3s;}
+.pl-node:hover{transform:translateY(-6px) scale(1.05);box-shadow:0 18px 34px -10px rgba(37,99,235,0.5);}
+.pl-icon{width:32px;height:32px;border-radius:50%;background:rgba(37,99,235,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+/* PROCESS / HOW WE WORK */
+.process-block{margin-bottom:60px;}
+.process-block h3{font-size:1.2rem;margin-bottom:28px;color:var(--primary);text-align:center;}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+.tstep{position:relative;padding:0 18px;text-align:center;}
+.tstep:not(:last-child)::after{content:'';position:absolute;top:26px;right:-18px;width:36px;height:2px;
+  background:linear-gradient(90deg,var(--primary),var(--secondary));background-size:200% 100%;animation:lineFlow 3s linear infinite;}
+@keyframes lineFlow{0%{background-position:0% 0;}100%{background-position:-200% 0;}}
+.tnum{width:52px;height:52px;border-radius:50%;margin:0 auto 16px;background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#fff;font-family:'Sora',sans-serif;font-weight:800;font-size:1.1rem;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 26px -8px rgba(37,99,235,0.55);transition:transform 0.3s;}
+.tstep:hover .tnum{transform:scale(1.12);}
+.tstep h4{font-size:0.95rem;font-weight:700;}
+
+/* GENERIC PROGRAM/FEATURE CARDS */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.feat-card{background:rgba(255,255,255,0.72);backdrop-filter:blur(14px);border:1px solid rgba(37,99,235,0.14);border-radius:16px;
+  padding:26px 24px;transition:transform 0.3s, box-shadow 0.3s, border-color 0.3s;}
+.feat-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px -20px rgba(37,99,235,0.35);border-color:var(--primary);}
+.feat-icon{width:42px;height:42px;border-radius:10px;margin-bottom:14px;background:linear-gradient(135deg,rgba(37,99,235,0.1),rgba(96,165,250,0.15));
+  display:flex;align-items:center;justify-content:center;transition:transform 0.3s;}
+.feat-card:hover .feat-icon{transform:scale(1.1) rotate(-5deg);}
+.feat-card h4{font-size:1rem;margin-bottom:8px;}
+.feat-card p{color:#64748B;font-size:0.85rem;line-height:1.6;}
+
+/* CASE STUDIES */
+.case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.case-card{background:rgba(255,255,255,0.75);backdrop-filter:blur(14px);border:1px solid rgba(37,99,235,0.15);border-radius:20px;
+  padding:30px 28px;transition:transform 0.3s, box-shadow 0.3s, border-color 0.3s;}
+.case-card:hover{transform:translateY(-6px);box-shadow:0 22px 46px -18px rgba(37,99,235,0.35);border-color:var(--primary);}
+.case-tag{display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;color:var(--primary);
+  background:rgba(37,99,235,0.08);padding:5px 12px;border-radius:999px;margin-bottom:14px;}
+.case-card h4{font-size:1.08rem;margin-bottom:14px;}
+.case-row{display:flex;gap:10px;margin-bottom:10px;font-size:0.86rem;line-height:1.6;color:#475569;}
+.case-row b{color:var(--soft-black);min-width:74px;flex-shrink:0;}
+
+/* SEO BLOCK */
+.seo-block{background:var(--light-gray);}
+.seo-block p{color:#64748B;font-size:0.92rem;line-height:1.85;max-width:920px;margin:0 auto;text-align:center;}
+.seo-block .kw-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:28px;}
+.kw-pill{font-size:0.78rem;color:#94A3B8;border:1px dashed #CBD5E1;padding:7px 14px;border-radius:999px;}
+
+/* DECK CTA */
+.deck-box{background:linear-gradient(135deg, rgba(37,99,235,0.07), rgba(96,165,250,0.1));border:1px solid rgba(37,99,235,0.2);
+  border-radius:24px;padding:50px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;
+  box-shadow:0 24px 60px -30px rgba(37,99,235,0.35);}
+.deck-box h3{font-size:1.4rem;margin-bottom:10px;}
+.deck-box p{color:#64748B;font-size:0.92rem;max-width:420px;}
+
+/* FINAL CTA */
+.final-cta{background:linear-gradient(135deg, var(--navy) 0%, #16265c 50%, var(--primary) 130%);color:#fff;text-align:center;
+  overflow:hidden;position:relative;padding:130px 0;}
+.final-cta::before{content:'';position:absolute;top:-160px;left:-100px;width:420px;height:420px;
+  background:radial-gradient(circle, rgba(96,165,250,0.4), transparent 70%);filter:blur(20px);}
+.final-cta::after{content:'';position:absolute;bottom:-160px;right:-100px;width:420px;height:420px;
+  background:radial-gradient(circle, rgba(37,99,235,0.4), transparent 70%);filter:blur(20px);}
+.final-cta h2{font-size:2.3rem;font-weight:800;line-height:1.18;max-width:780px;margin:0 auto 30px;position:relative;z-index:2;}
+.final-cta .cta-row{justify-content:center;position:relative;z-index:2;}
+
+/* FOOTER */
+footer{background:var(--navy);color:#CBD5E1;padding:70px 0 28px;position:relative;overflow:hidden;}
+footer::before{content:'';position:absolute;top:-120px;right:-80px;width:340px;height:340px;
+  background:radial-gradient(circle, rgba(37,99,235,0.35), transparent 70%);filter:blur(20px);}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1.2fr 1fr 1fr;gap:36px;padding-bottom:40px;
+  border-bottom:1px solid rgba(255,255,255,0.1);position:relative;z-index:2;}
+.f-logo{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.f-logo-mg{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--secondary));
+  display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:800;color:#fff;font-size:0.92rem;}
+.f-logo-text{font-family:'Sora',sans-serif;font-weight:800;color:#fff;font-size:0.98rem;}
+footer .f-desc{font-size:0.88rem;color:#94A3B8;line-height:1.7;}
+footer h4{color:#fff;font-size:0.92rem;font-weight:700;margin-bottom:18px;letter-spacing:0.02em;}
+footer ul{display:flex;flex-direction:column;gap:11px;}
+footer ul a{font-size:0.87rem;color:#94A3B8;transition:color 0.2s, padding-left 0.2s;}
+footer ul a:hover{color:var(--secondary);padding-left:4px;}
+.f-contact-item{font-size:0.87rem;color:#94A3B8;margin-bottom:12px;display:flex;gap:8px;}
+.social-row{display:flex;gap:12px;margin-top:18px;}
+.social-icon{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;
+  transition:box-shadow 0.25s, background 0.25s, transform 0.25s;}
+.social-icon:hover{background:rgba(37,99,235,0.25);box-shadow:0 0 18px rgba(96,165,250,0.6);transform:translateY(-3px);}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:24px;font-size:0.8rem;color:#64748B;
+  position:relative;z-index:2;}
+.footer-bottom a{color:#94A3B8;}
+.footer-bottom a:hover{color:var(--secondary);}
+.iso-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,0.12);border:1px solid rgba(96,165,250,0.35);
+  border-radius:999px;padding:7px 16px;font-size:0.74rem;font-weight:700;color:#C7D2FE;margin-top:18px;}
+
+/* RESPONSIVE */
+@media (max-width:1080px){
+  .impact-grid{grid-template-columns:repeat(3,1fr);}
+  .feat-grid{grid-template-columns:repeat(2,1fr);}
+  .case-grid{grid-template-columns:1fr;}
+  .logo-grid{grid-template-columns:repeat(3,1fr);}
+  .footer-grid{grid-template-columns:1fr 1fr 1fr;}
+}
+@media (max-width:900px){
+  nav{grid-template-columns:auto auto;}
+  .nav-links{display:none;}
+  .menu-btn{display:block;}
+  .hero-grid, .core-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:2rem;}
+  .hero-visual{height:340px;margin-top:10px;}
+  .timeline{grid-template-columns:1fr;gap:24px;}
+  .tstep:not(:last-child)::after{display:none;}
+  .deck-box{flex-direction:column;text-align:center;}
+  .impact-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:600px){
+  .wrap{padding:0 20px;}
+  nav{padding:0 20px;}
+  .hero{padding:140px 0 70px;}
+  section{padding:64px 0;}
+  .impact-grid, .feat-grid, .logo-grid{grid-template-columns:1fr 1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .final-cta h2{font-size:1.7rem;}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001s !important; animation-iteration-count:1 !important; transition-duration:0.001s !important;}
+}
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav>
+    <div class="logo-block">
+      <div class="logo-mg">MG</div>
+      <div class="logo-text">MYLOTIC GROUP</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html#home">HOME</a></li>
+      <li><a href="about.html">ABOUT US</a></li>
+      <li><a href="services.html">SERVICES</a></li>
+      <li><a href="training.html">TRAINING &amp; DEVELOPMENT</a></li>
+      <li><a href="#" class="active">PORTFOLIO</a></li>
+      <li><a href="industries.html">INDUSTRIES</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="contact.html" class="btn-contact">CONTACT US</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="floating-shape shape1"></div>
+  <div class="floating-shape shape2"></div>
+  <div class="floating-shape shape3"></div>
+  <div class="wrap hero-grid">
+    <div class="page-enter">
+      <div class="positioning-line">"One Partner for Talent, Technology &amp; Transformation."</div>
+      <h1>Building Talent. Powering Technology. Enabling Global Transformation.</h1>
+      <p class="subhead">ISO Certified Global Talent, Technology &amp; Business Solutions Company specializing in recruitment, IT services, GCC enablement, and workforce transformation.</p>
+      <p class="lede">MYLOTIC GROUP helps enterprises build scalable teams, modern technology systems, and future-ready business capabilities through integrated recruitment, AI, GCC, and training solutions.</p>
+      <div class="cta-row">
+        <a href="#recruitment" class="btn-primary">Explore Recruitment Solutions</a>
+        <a href="#itservices" class="btn-outline">Explore IT Services</a>
+        <a href="contact.html" class="btn-outline">Request Consultation</a>
+        <a href="#deck" class="btn-outline">Download Company Deck</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="glow-ring r1"></div>
+      <div class="glow-ring r2"></div>
+      <div class="particle" style="width:7px;height:7px;top:14%;left:30%;animation-delay:0.2s;"></div>
+      <div class="particle" style="width:5px;height:5px;top:74%;left:22%;animation-delay:1.1s;"></div>
+      <div class="particle" style="width:6px;height:6px;top:30%;left:78%;animation-delay:1.8s;"></div>
+      <div class="hub-core">MYLOTIC<br>GROUP</div>
+      <div class="float-card fc1">🧑‍💼 Recruitment</div>
+      <div class="float-card fc2">🤖 IT &amp; AI</div>
+      <div class="float-card fc3">🌐 GCC</div>
+      <div class="float-card fc4">🎓 EdTech</div>
+      <div class="float-card fc5">📊 HR Consulting</div>
+      <div class="float-card fc6">☁️ Cloud &amp; Data</div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT SNAPSHOT -->
+<section class="impact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;display:inline-flex;">IMPACT SNAPSHOT</div>
+      <h2>Numbers That Reflect Our Reach</h2>
+    </div>
+    <div class="impact-grid">
+      <div class="stat-card reveal"><div class="stat-num" data-target="100" data-suffix="+">0</div><div class="stat-title">Recruitment Projects Delivered</div></div>
+      <div class="stat-card reveal"><div class="stat-num" data-target="5000" data-suffix="+">0</div><div class="stat-title">Professionals Trained &amp; Placed</div></div>
+      <div class="stat-card reveal"><div class="stat-num" data-target="200" data-suffix="+">0</div><div class="stat-title">Corporate Programs</div></div>
+      <div class="stat-card reveal"><div class="stat-num" data-target="50" data-suffix="+">0</div><div class="stat-title">Enterprise Clients Served</div></div>
+      <div class="stat-card reveal"><div class="stat-num" data-target="20" data-suffix="+">0</div><div class="stat-title">Industry Domains</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST & CLIENTS -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;display:inline-flex;">TRUST &amp; INDUSTRIES</div>
+      <h2>Trusted by Businesses Across Industries</h2>
+      <p>We have a strong, proven response across every industry we work with, from established enterprises to fast-growing startups.</p>
+    </div>
+    <div class="industry-pills reveal">
+      <span class="pill">IT, AI Solutions &amp; Emerging Technologies</span>
+      <span class="pill">GCC (Global Capability Center)</span>
+      <span class="pill">Information Technology (IT)</span>
+      <span class="pill">Research and Development</span>
+      <span class="pill">Non-IT</span>
+      <span class="pill">BFSI / Fintech</span>
+      <span class="pill">EdTech &amp; E-learning</span>
+      <span class="pill">Healthcare</span>
+      <span class="pill">Media &amp; Digital Marketing</span>
+      <span class="pill">OTT &amp; Entertainment</span>
+      <span class="pill">E-commerce</span>
+      <span class="pill">Design</span>
+      <span class="pill">Telecom</span>
+      <span class="pill">HR &amp; Recruitment</span>
+      <span class="pill">Manufacturing</span>
+    </div>
+    <div class="trust-line reveal">Trusted Talent &amp; Technology Partner</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RECRUITMENT & STAFFING -->
+<section class="impact" id="recruitment">
+  <div class="wrap core-grid">
+    <div class="reveal">
+      <div class="eyebrow">PRIMARY &middot; CORE SERVICE</div>
+      <h2>Tech Recruitment &amp; Talent Acquisition Solutions</h2>
+      <p style="color:#64748B;">End-to-end IT recruitment services and non-IT hiring built around speed, quality, and long-term fit.</p>
+      <div class="service-pills">
+        <span class="service-pill">IT Recruitment</span>
+        <span class="service-pill">Non-IT Hiring</span>
+        <span class="service-pill">Executive Search</span>
+        <span class="service-pill">Bulk Hiring</span>
+        <span class="service-pill">Staff Augmentation</span>
+        <span class="service-pill">Contract / Permanent Staffing &amp; More</span>
+        <span class="service-pill">RPO Services</span>
+        <span class="service-pill">Campus Hiring</span>
+      </div>
+      <p class="impact-line">We connect the right talent with the right opportunity at the right time.</p>
+    </div>
+    <div class="pipeline-card reveal d2">
+      <svg class="pipeline-svg" viewBox="0 0 420 360" fill="none">
+        <path class="pipeline-path" d="M50 60 C 160 60, 100 160, 210 160 S 360 260, 370 300" stroke="url(#pgrad)" stroke-width="2.5" stroke-dasharray="6 8" fill="none"/>
+        <path class="pipeline-path-glow" d="M50 60 C 160 60, 100 160, 210 160 S 360 260, 370 300" stroke="url(#pgrad)" stroke-width="2.5" fill="none"/>
+        <defs>
+          <linearGradient id="pgrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#2563EB"/>
+            <stop offset="100%" stop-color="#60A5FA"/>
+          </linearGradient>
+        </defs>
+        <circle class="flow-dot" r="4" fill="#60A5FA">
+          <animateMotion dur="3.2s" repeatCount="indefinite" path="M50 60 C 160 60, 100 160, 210 160 S 360 260, 370 300"/>
+        </circle>
+        <circle class="flow-dot" r="4" fill="#2563EB">
+          <animateMotion dur="3.2s" repeatCount="indefinite" begin="1.6s" path="M50 60 C 160 60, 100 160, 210 160 S 360 260, 370 300"/>
+        </circle>
+      </svg>
+      <div class="pl-node" style="top:6%;left:6%;">
+        <div class="pl-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#2563EB" stroke-width="1.8"/><path d="M21 21l-4.3-4.3" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <span>Sourcing</span>
+      </div>
+      <div class="pl-node" style="top:34%;left:42%;">
+        <div class="pl-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 5h16M7 12h10M10 19h4" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <span>Screening</span>
+      </div>
+      <div class="pl-node" style="top:62%;left:74%;">
+        <div class="pl-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 12l3 3 5-6" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="#2563EB" stroke-width="1.8"/></svg></div>
+        <span>Hiring</span>
+      </div>
+      <div class="pl-node" style="top:84%;left:84%;">
+        <div class="pl-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8Z" stroke="#2563EB" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <span>Deployment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IT & AI TECHNOLOGY -->
+<section id="itservices">
+  <div class="wrap core-grid">
+    <div class="network-visual reveal" style="order:2;">
+      <div class="nv-glow" style="width:200px;height:200px;background:radial-gradient(circle,var(--primary),transparent 70%);bottom:8%;left:8%;"></div>
+      <div class="nv-node" style="top:16%;left:46%;">AI &amp; Automation</div>
+      <div class="nv-node" style="top:42%;left:10%;animation-delay:0.5s;">Cloud Solutions</div>
+      <div class="nv-node" style="top:48%;left:60%;animation-delay:1s;">Data Analytics</div>
+      <div class="nv-node" style="top:74%;left:30%;animation-delay:1.5s;">CRM Systems</div>
+    </div>
+    <div class="reveal d2" style="order:1;">
+      <div class="eyebrow">PRIMARY &middot; CORE SERVICE</div>
+      <h2>IT &amp; AI Technology Services</h2>
+      <p style="color:#64748B;">An AI development company mindset applied to enterprise systems, web platforms, and digital transformation.</p>
+      <div class="service-pills">
+        <span class="service-pill">AI &amp; Automation Solutions</span>
+        <span class="service-pill">Web &amp; App Development</span>
+        <span class="service-pill">Cloud Solutions</span>
+        <span class="service-pill">CRM &amp; Enterprise Systems</span>
+        <span class="service-pill">Data Analytics</span>
+        <span class="service-pill">Digital Transformation Consulting</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GCC -->
+<section class="impact" id="gcc">
+  <div class="wrap core-grid">
+    <div class="reveal">
+      <div class="eyebrow">HIGH PRIORITY</div>
+      <h2>GCC (Global Capability Center) Enablement</h2>
+      <p style="color:#64748B;">A trusted GCC setup services company helping global organizations stand up and scale India-based delivery teams.</p>
+      <div class="service-pills">
+        <span class="service-pill">GCC Setup Strategy</span>
+        <span class="service-pill">Offshore Teams</span>
+        <span class="service-pill">Global Delivery Models</span>
+        <span class="service-pill">Workforce Scaling</span>
+        <span class="service-pill">Process Optimization</span>
+      </div>
+    </div>
+    <div class="network-visual reveal d2">
+      <div class="nv-glow" style="width:200px;height:200px;background:radial-gradient(circle,var(--secondary),transparent 70%);top:6%;right:6%;"></div>
+      <div class="nv-node" style="top:18%;left:10%;">India Hub</div>
+      <div class="nv-node" style="top:40%;left:54%;animation-delay:0.5s;">North America</div>
+      <div class="nv-node" style="top:62%;left:20%;animation-delay:1s;">Europe</div>
+      <div class="nv-node" style="top:78%;left:56%;animation-delay:1.5s;">APAC</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HOW WE WORK -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;display:inline-flex;">HOW WE WORK</div>
+      <h2>A Process Built for Reliable Outcomes</h2>
+    </div>
+    <div class="process-block">
+      <h3>Recruitment Process</h3>
+      <div class="timeline">
+        <div class="tstep reveal"><div class="tnum">1</div><h4>Understand Requirement</h4></div>
+        <div class="tstep reveal"><div class="tnum">2</div><h4>Source Talent</h4></div>
+        <div class="tstep reveal"><div class="tnum">3</div><h4>Screen &amp; Evaluate</h4></div>
+        <div class="tstep reveal"><div class="tnum">4</div><h4>Final Placement</h4></div>
+      </div>
+    </div>
+    <div class="process-block" style="margin-bottom:0;">
+      <h3>IT Process</h3>
+      <div class="timeline" style="grid-template-columns:repeat(5,1fr);">
+        <div class="tstep reveal"><div class="tnum">1</div><h4>Requirement Analysis</h4></div>
+        <div class="tstep reveal"><div class="tnum">2</div><h4>Design Solution</h4></div>
+        <div class="tstep reveal"><div class="tnum">3</div><h4>Development</h4></div>
+        <div class="tstep reveal"><div class="tnum">4</div><h4>Deployment</h4></div>
+        <div class="tstep reveal"><div class="tnum">5</div><h4>Optimization</h4></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDTECH -->
+<section class="impact" id="edtech">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;display:inline-flex;">SECONDARY</div>
+      <h2>EdTech &amp; Skill Development</h2>
+      <p>An EdTech training institute building job-ready talent through hands-on, industry-aligned programs.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card reveal"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="13" rx="2" stroke="#2563EB" stroke-width="1.8"/><path d="M8 21h8" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round"/></svg></div><h4>Full Stack Development</h4><p>Hands-on training across modern front-end and back-end stacks.</p></div>
+      <div class="feat-card reveal d1"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#2563EB" stroke-width="1.8"/><path d="M8 12h8M12 8v8" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round"/></svg></div><h4>Data Science &amp; AI</h4><p>Practical skills in data, machine learning, and applied AI.</p></div>
+      <div class="feat-card reveal d2"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 12l9-7 9 7-9 7-9-7Z" stroke="#2563EB" stroke-width="1.8" stroke-linejoin="round"/></svg></div><h4>Digital Marketing</h4><p>SEO, performance marketing, and brand growth fundamentals.</p></div>
+      <div class="feat-card reveal d3"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="#2563EB" stroke-width="1.8"/><path d="M3 19c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#2563EB" stroke-width="1.8"/></svg></div><h4>HR &amp; Business Training</h4><p>Foundational programs for HR and business operations careers.</p></div>
+      <div class="feat-card reveal d4"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19V5a1 1 0 011-1h8l6 6v9a1 1 0 01-1 1H5a1 1 0 01-1-1Z" stroke="#2563EB" stroke-width="1.8" stroke-linejoin="round"/></svg></div><h4>Internship Programs</h4><p>Structured internships that bridge classroom learning and industry work.</p></div>
+      <div class="feat-card reveal d5"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8Z" stroke="#2563EB" stroke-width="1.8" stroke-linejoin="round"/></svg></div><h4>Career Bootcamps</h4><p>Intensive, outcome-focused programs to fast-track job readiness.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CORPORATE TRAINING -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;display:inline-flex;">SUPPORTING</div>
+      <h2>Corporate Training &amp; HR Consulting</h2>
+    </div>
+    <div class="industry-pills reveal">
+      <span class="pill">Leadership Training</span>
+      <span class="pill">Sales Training</span>
+      <span class="pill">HR Operations</span>
+      <span class="pill">Soft Skills</span>
+      <span class="pill">Team Building</span>
+    </div>
+  </div>
+</section>
+
+<!-- COACHING -->
+<section class="impact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;display:inline-flex;">SUPPORTING</div>
+      <h2>Coaching &amp; Leadership</h2>
+    </div>
+    <div class="industry-pills reveal">
+      <span class="pill">Executive Coaching</span>
+      <span class="pill">Leadership Mentorship</span>
+      <span class="pill">Team Coaching</span>
+      <span class="pill">Manager Development</span>
+    </div>
+  </div>
+</section>
+
+<!-- UNIVERSITY -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;display:inline-flex;">SUPPORTING</div>
+      <h2>University &amp; Internship Programs</h2>
+    </div>
+    <div class="industry-pills reveal">
+      <span class="pill">Campus to Corporate Training</span>
+      <span class="pill">Internship Programs (1 to 6 months)</span>
+      <span class="pill">Live Projects</span>
+      <span class="pill">Workshops &amp; Seminars</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SUCCESS STORIES -->
+<section class="impact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;display:inline-flex;">SUCCESS STORIES</div>
+      <h2>Case Studies</h2>
+    </div>
+    <div class="case-grid">
+      <div class="case-card reveal">
+        <span class="case-tag">RECRUITMENT</span>
+        <h4>Scaling a Tech Team in 6 Weeks</h4>
+        <div class="case-row"><b>Problem</b> A growing IT company needed 25 engineers quickly without compromising on quality.</div>
+        <div class="case-row"><b>Solution</b> Dedicated sourcing pods and structured screening across multiple skill tracks.</div>
+        <div class="case-row"><b>Result</b> All 25 roles filled within 6 weeks with a 92% 6-month retention rate.</div>
+      </div>
+      <div class="case-card reveal d1">
+        <span class="case-tag">IT PROJECT</span>
+        <h4>Modernizing a Legacy Platform</h4>
+        <div class="case-row"><b>Problem</b> An enterprise client was running on an outdated, hard-to-maintain system.</div>
+        <div class="case-row"><b>Solution</b> Phased migration to a modern cloud-based architecture with minimal downtime.</div>
+        <div class="case-row"><b>Result</b> 40% faster system performance and reduced maintenance overhead.</div>
+      </div>
+      <div class="case-card reveal d2">
+        <span class="case-tag">GCC SETUP</span>
+        <h4>Standing Up an India Delivery Center</h4>
+        <div class="case-row"><b>Problem</b> A global business wanted an India-based capability center but lacked local setup expertise.</div>
+        <div class="case-row"><b>Solution</b> End-to-end GCC setup including leadership hiring, infrastructure, and process design.</div>
+        <div class="case-row"><b>Result</b> Fully operational 60-member center live within one quarter.</div>
+      </div>
+      <div class="case-card reveal d3">
+        <span class="case-tag">EDTECH</span>
+        <h4>From Bootcamp to First Job</h4>
+        <div class="case-row"><b>Problem</b> Career-switchers needed a faster path into tech roles.</div>
+        <div class="case-row"><b>Solution</b> An intensive, project-based bootcamp with direct placement support.</div>
+        <div class="case-row"><b>Result</b> 80% of the cohort placed in roles within 90 days of completion.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEO BLOCK -->
+<section class="seo-block">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;display:inline-flex;">WHO WE SERVE</div>
+      <h2>A Single Partner Across the Talent &amp; Technology Lifecycle</h2>
+    </div>
+    <p class="reveal">As an IT recruitment services provider, GCC setup services company, AI development company, and EdTech training institute, Mylotic Group works as a single staffing solutions provider and corporate training provider for organizations that want fewer vendors and better outcomes.</p>
+    <div class="kw-row reveal">
+      <span class="kw-pill">IT Recruitment Services</span>
+      <span class="kw-pill">GCC Setup Services</span>
+      <span class="kw-pill">Corporate Training Provider</span>
+      <span class="kw-pill">EdTech Training Institute</span>
+      <span class="kw-pill">AI Development Company</span>
+      <span class="kw-pill">Staffing Solutions Provider</span>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD DECK -->
+<section id="deck">
+  <div class="wrap">
+    <div class="deck-box reveal">
+      <div>
+        <h3>Download MYLOTIC GROUP Corporate Profile</h3>
+        <p>Get the full overview of our recruitment, technology, GCC, and training capabilities in one document.</p>
+      </div>
+      <a href="contact.html" class="btn-primary">Download Deck (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap">
+    <div class="eyebrow on-dark" style="justify-content:center;display:inline-flex;">LET'S TALK</div>
+    <h2 class="reveal">Let's Build Talent. Technology. Transformation.</h2>
+    <div class="cta-row reveal d1">
+      <a href="contact.html" class="btn-primary">Contact Us</a>
+      <a href="contact.html" class="btn-outline on-dark">Request Proposal</a>
+      <a href="contact.html" class="btn-outline on-dark">Schedule Consultation</a>
+      <a href="#deck" class="btn-outline on-dark">Download Deck</a>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="f-logo">
+          <div class="f-logo-mg">MG</div>
+          <div class="f-logo-text">MYLOTIC GROUP</div>
+        </div>
+        <p class="f-desc">Empowering Businesses with Talent, Technology &amp; Global Capabilities.</p>
+        <div class="iso-badge">✓ ISO Certified Organization</div>
+        <div class="social-row">
+          <a class="social-icon" href="#" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="3" stroke="#CBD5E1" stroke-width="1.6"/><path d="M7 10v7M7 7.2v.01M11 17v-4.5c0-1.4 1-2.5 2.4-2.5S16 11 16 12.7V17M11 10v7" stroke="#CBD5E1" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+          <a class="social-icon" href="#" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="#CBD5E1" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" stroke="#CBD5E1" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1.1" fill="#CBD5E1"/></svg></a>
+          <a class="social-icon" href="#" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M14 21v-7h2.5l.5-3H14V9c0-.9.3-1.5 1.7-1.5H17V4.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1V11H8v3h2.6v7H14Z" stroke="#CBD5E1" stroke-width="1.4" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="training.html">Training &amp; Development</a></li>
+          <li><a href="#">Portfolio</a></li>
+          <li><a href="industries.html">Industries</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#recruitment">Recruitment &amp; Staffing</a></li>
+          <li><a href="#itservices">AI Solutions</a></li>
+          <li><a href="#gcc">GCC Enablement</a></li>
+          <li><a href="#itservices">Web &amp; App Development</a></li>
+          <li><a href="#edtech">EdTech Training</a></li>
+          <li><a href="#">Managed Services</a></li>
+          <li><a href="#">Digital Transformation</a></li>
+          <li><a href="#">HR Solutions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="#">IT</a></li>
+          <li><a href="#">Non-IT</a></li>
+          <li><a href="#">EdTech</a></li>
+          <li><a href="#">Healthcare</a></li>
+          <li><a href="#">OTT / Media</a></li>
+          <li><a href="#">BFSI &amp; Fintech</a></li>
+          <li><a href="#">AI &amp; Automation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div class="f-contact-item">📧 info@myloticgroup.com</div>
+        <div class="f-contact-item">📞 +91 9717101758</div>
+        <div class="f-contact-item">📍 India</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MYLOTIC GROUP. All Rights Reserved.</span>
+      <span><a href="#">Privacy Policy</a> • <a href="#">Terms &amp; Conditions</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('load', () => document.body.classList.add('loaded'));
+
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 40) header.classList.add('scrolled');
+  else header.classList.remove('scrolled');
+});
+
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.querySelector('.nav-links');
+menuBtn.addEventListener('click', () => {
+  const open = navLinks.style.display === 'flex';
+  navLinks.style.display = open ? 'none' : 'flex';
+  navLinks.style.cssText += open ? '' : 'position:fixed;top:74px;left:20px;right:20px;background:#fff;flex-direction:column;padding:24px;border-radius:16px;box-shadow:0 20px 40px -10px rgba(37,99,235,0.25);gap:18px;z-index:999;';
+});
+
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => revealObserver.observe(el));
+
+const counters = document.querySelectorAll('.stat-num[data-target]');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.getAttribute('data-target'), 10);
+      const suffix = el.getAttribute('data-suffix') || '';
+      const duration = 1400;
+      const start = performance.now();
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const current = Math.floor(progress * target);
+        el.textContent = current + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = target + suffix;
+      }
+      requestAnimationFrame(tick);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.4 });
+counters.forEach(el => counterObserver.observe(el));
+
+document.querySelectorAll('.btn-primary, .btn-outline').forEach(btn => {
+  btn.addEventListener('mousemove', (e) => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transform = `translate(${x * 0.15}px, ${y * 0.25}px)`;
+  });
+  btn.addEventListener('mouseleave', () => btn.style.transform = 'translate(0,0)');
+  btn.addEventListener('click', function(e){
+    const rect = this.getBoundingClientRect();
+    const ripple = document.createElement('span');
+    const size = Math.max(rect.width, rect.height);
+    ripple.className = 'ripple';
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+    ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+    this.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
+  });
+});
+</script>
+</body>
+</html>
